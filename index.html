@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rushan Ul Haque | Innovative Developer & Portfolio</title>
+    <meta name="description"
+        content="Official portfolio of Rushan Ul Haque. Showcasing expertise in Python, AI systems, and interactive creative development.">
+    <meta name="keywords" content="Rushan Ul Haque, Developer, Python, AI, Creative Coding, Portfolio">
+    <meta name="author" content="Rushan Ul Haque">
+    <meta name="theme-color" content="#bed840">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rushanhaque.github.io/">
+    <meta property="og:title" content="Rushan Ul Haque | Innovative Developer">
+    <meta property="og:description" content="Exploring the intersection of code, design, and intelligence.">
+    <meta property="og:image" content="assets/images/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="projects-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Space+Grotesk:wght@300;400;700&family=Fira+Code:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400;1,600&family=Noto+Sans+Devanagari:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preload" href="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" as="fetch"
+        crossorigin="anonymous">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.28/build/spline-viewer.js"></script>
+</head>
+
+<body class="loading">
+    <div class="grain-overlay"></div>
+    <div id="scroll-progress"></div>
+    <!-- Preloader -->
+    <div id="loader">
+        <div class="loader">
+            <div class="text"><span>Welcome</span></div>
+            <div class="text"><span>Welcome</span></div>
+            <div class="text"><span>Welcome</span></div>
+            <div class="text"><span>Welcome</span></div>
+            <div class="text"><span>Welcome</span></div>
+            <div class="text"><span>Welcome</span></div>
+            <div class="text"><span>Welcome</span></div>
+            <div class="text"><span>Welcome</span></div>
+            <div class="text"><span>Welcome</span></div>
+            <div class="line"></div>
+        </div>
+    </div>
+    <div id="sukuna-cursor">
+        <img src="assets/images/cursor_v2.png" alt="Custom Cursor" class="arrow-img">
+    </div>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div id="three-container">
+        <canvas id="matrix-canvas"></canvas>
+        <div id="spline-container"></div>
+    </div>
+
+
+    <nav id="main-nav">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#home" class="active" data-i18n="nav-home"><span>Home</span></a></li>
+                <li><a href="#about" data-i18n="nav-about"><span>About</span></a></li>
+                <li><a href="#projects" data-i18n="nav-projects"><span>Projects</span></a></li>
+                <li><a href="#blogs" data-i18n="nav-works"><span>Works</span></a></li>
+                <li><a href="#contact" data-i18n="nav-contact"><span>Contact</span></a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="lang-menu-btn">
+                    <i class="ph ph-translate"></i>
+                    <span id="current-lang">EN</span>
+                </button>
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button data-lang="en">English</button>
+
+                    <button data-lang="fr">French</button>
+                    <button data-lang="de">German</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <section id="home" class="hero">
+            <div class="hero-content reveal">
+                <h1 class="glitch" data-text="CRAFTING THE"><span class="subtitle-word" data-i18n="hero-name">RUSHAN
+                        HAQUE</span><br><span class="hero-role" data-i18n="hero-role">Aspiring Developer & Writer</span>
+                </h1>
+                <div class="hero-btns">
+                    <a href="#projects" class="view-posts-btn">
+                        <span class="btn-text">View Projects</span>
+                        <span class="btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42s1.02.39 1.41 0l6.59-6.59a.996.996 0 0 0 0-1.41l-6.58-6.6a.996.996 0 1 0-1.41 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1">
+                                </path>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="#contact" class="view-posts-btn">
+                        <span class="btn-text" data-i18n="hero-contact">Get in Touch</span>
+                        <span class="btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42s1.02.39 1.41 0l6.59-6.59a.996.996 0 0 0 0-1.41l-6.58-6.6a.996.996 0 1 0-1.41 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1">
+                                </path>
+                            </svg>
+                        </span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="about-container reveal">
+                <div class="about-header section-header-inline"></div>
+                <div class="bento-resume-grid">
+                    <!-- Column 1: Core Identity -->
+                    <div class="bento-col main-col">
+                        <div class="resume-card bio-card">
+                            <div class="card-inner">
+                                <div class="scan-line"></div>
+                                <div class="card-noise"></div>
+                                <div class="card-glow-inner"></div>
+                                <div class="card-header">
+                                    <div class="icon-box"><i class="ph ph-user-circle"></i></div>
+                                    <h3 data-i18n="bio-title">Rushan Ul Haque</h3>
+                                </div>
+                                <p class="bio-text" data-i18n="bio-text">
+                                    I am a tech-driven individual with a strong interest in problem-solving and critical
+                                    thinking. I enjoy transforming ideas into practical approaches and consistently seek
+                                    new perspectives and innovative solutions. <br> I learn, design, and develop out of
+                                    genuine passion for the craft. <br> Alongside, I write with a deep appreciation for
+                                    language, expression, and intellectual depth
+                                </p>
+
+                                <div class="persona-items bio-personas">
+                                    <div class="p-item" title="Aviation Interest"><i class="ph ph-airplane"></i><span
+                                            data-i18n="p-travel">Travelling</span></div>
+                                    <div class="p-item" title="Competitive Sport"><i class="ph ph-soccer-ball"></i><span
+                                            data-i18n="p-football">Football</span></div>
+                                    <div class="p-item" title="Visual Arts"><i class="ph ph-camera"></i><span
+                                            data-i18n="p-photo">Photography</span>
+                                    </div>
+                                    <div class="p-item" title="Technical Writing"><i class="ph ph-pen-nib"></i><span
+                                            data-i18n="p-write">Writing</span></div>
+                                </div>
+
+                                <div class="bio-languages">
+                                    <div class="lang-tag">
+                                        <span class="lang-name">Hindi/Urdu</span>
+                                        <div class="lang-stars">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                                                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                                                class="ph-fill ph-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="lang-tag">
+                                        <span class="lang-name">English</span>
+                                        <div class="lang-stars">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                                                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                                                class="ph-fill ph-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="lang-tag">
+                                        <span class="lang-name">French</span>
+                                        <div class="lang-stars">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                                                class="ph-fill ph-star"></i><i class="ph ph-star"></i><i
+                                                class="ph ph-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="lang-tag">
+                                        <span class="lang-name">German</span>
+                                        <div class="lang-stars">
+                                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                                                class="ph-fill ph-star"></i><i class="ph ph-star"></i><i
+                                                class="ph ph-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Academic Foundation Integraged at Bottom -->
+                                <div class="card-header"
+                                    style="margin-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.5rem;">
+                                    <div class="icon-box"><i class="ph ph-graduation-cap"></i></div>
+                                    <h3 data-i18n="edu-title">Academic Foundation</h3>
+                                </div>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="time">2023 — 27</div>
+                                        <div class="detail">
+                                            <h4 data-i18n="edu-1-deg">Bachelors of Technology in Computer Science (IOT)
+                                            </h4>
+                                            <p data-i18n="edu-1-inst">Moradabad Institute of Technology</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="time">2021 — 23</div>
+                                        <div class="detail">
+                                            <h4 data-i18n="edu-2-deg">Senior Secondary Education (CBSE)</h4>
+                                            <p data-i18n="edu-2-inst">Bonny Anne Public School</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cert-cv-buttons">
+                                    <a href="certificates.html" class="view-all-certs-btn edu-cert-btn">
+                                        <span data-i18n="edu-certs">Certificates</span>
+                                        <i class="ph ph-arrow-square-out"></i>
+                                    </a>
+                                    <a href="assets/docs/Rushan_Haque_Resume.pdf" download
+                                        class="view-all-certs-btn edu-cert-btn"
+                                        style="background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);">
+                                        <span data-i18n="hero-resume">Download CV</span>
+                                        <i class="ph ph-download-simple"></i>
+                                    </a>
+                                    <button id="open-skills-modal" class="view-all-certs-btn edu-cert-btn"
+                                        style="background: rgba(var(--accent-color-rgb), 0.1); border: 1px solid var(--accent-color); color: var(--accent-color);">
+                                        <span data-i18n="nav-skills">Skills</span>
+                                        <i class="ph ph-code"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="projects" class="projects">
+            <div class="section-header reveal">
+
+                <div class="line"></div>
+            </div>
+            <div class="project-slider-wrapper">
+                <button class="scroll-btn left" id="scrollLeft" aria-label="Scroll Left">
+                    <div class="round">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </button>
+                <div class="project-grid">
+                    <!-- Project 1: ShadowChat -->
+                    <div class="project-card-3d reveal">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <i class="ph ph-lock-key"></i>
+                                    <strong>SHADOWCHAT</strong>
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle c1"></div>
+                                    <div class="circle c2"></div>
+                                    <div class="circle c3"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge">Python • WebSocket</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title"><strong data-i18n="proj-1-name">ShadowChat</strong></p>
+                                        </div>
+                                        <p class="card-footer" data-i18n="proj-1-desc">Encrypted burn-after-read private
+                                            chatroom
+                                        </p>
+                                    </div>
+                                    <div class="project-actions">
+                                        <a href="https://github.com/rushanhaque/SHADOW_CHAT.git" target="_blank"
+                                            class="project-link">
+                                            <i class="ph ph-github-logo"></i> <span data-i18n="proj-src">GITHUB
+                                                SOURCE</span>
+                                        </a>
+                                        <a href="https://shadow-chat-7ifp.onrender.com" target="_blank"
+                                            class="project-link project-link-secondary">
+                                            <i class="ph ph-arrow-square-out"></i> <span data-i18n="proj-access">DIRECT
+                                                ACCESS</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: GitHub Auto-Push -->
+                    <div class="project-card-3d reveal">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <i class="ph ph-git-branch"></i>
+                                    <strong>AUTO-PUSH</strong>
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle c1"></div>
+                                    <div class="circle c2"></div>
+                                    <div class="circle c3"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge">Python • Flask</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title"><strong data-i18n="proj-2-name">GitHub Auto-Push</strong>
+                                            </p>
+                                        </div>
+                                        <p class="card-footer" data-i18n="proj-2-desc">Automated Git repo-upload tool
+                                        </p>
+                                    </div>
+                                    <div class="project-actions">
+                                        <a href="https://github.com/rushanhaque/Auto-Repo-push.git" target="_blank"
+                                            class="project-link">
+                                            <i class="ph ph-github-logo"></i> <span data-i18n="proj-src">GITHUB
+                                                SOURCE</span>
+                                        </a>
+                                        <a href="https://rushanhaque.itch.io/autorepopusher" target="_blank"
+                                            class="project-link project-link-secondary">
+                                            <i class="ph ph-download"></i> <span data-i18n="proj-download">DOWNLOAD
+                                                APP</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: ShadowKill -->
+                    <div class="project-card-3d reveal">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <i class="ph ph-warning-circle"></i>
+                                    <strong>SHADOWKILL</strong>
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle c1"></div>
+                                    <div class="circle c2"></div>
+                                    <div class="circle c3"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge">Python • Audio</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title"><strong data-i18n="proj-3-name">ShadowKill</strong></p>
+                                        </div>
+                                        <p class="card-footer" data-i18n="proj-3-desc">Audio triggered panic task-kill
+                                            system</p>
+                                    </div>
+                                    <div class="project-actions">
+                                        <a href="https://github.com/rushanhaque/killswitch/releases/tag/trial"
+                                            target="_blank" class="project-link">
+                                            <i class="ph ph-github-logo"></i> <span data-i18n="proj-src">GITHUB
+                                                SOURCE</span>
+                                        </a>
+                                        <a href="https://github.com/rushanhaque/killswitch/releases/tag/trial"
+                                            target="_blank" class="project-link project-link-secondary"
+                                            title="CMD: pip install shadowkill_ruh">
+                                            <i class="ph ph-terminal-window"></i> pip install shadowkill_ruh
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Sentry Mode -->
+                    <div class="project-card-3d reveal">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <i class="ph ph-shield-warning"></i>
+                                    <strong>SENTRY MODE</strong>
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle c1"></div>
+                                    <div class="circle c2"></div>
+                                    <div class="circle c3"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge">Arduino • Python</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title"><strong data-i18n="proj-4-name">Sentry Mode</strong></p>
+                                        </div>
+                                        <p class="card-footer" data-i18n="proj-4-desc">Anti-interference detection
+                                            system with alarm and notifications</p>
+                                    </div>
+                                    <div class="project-actions">
+                                        <a href="https://github.com/rushanhaque/sentry-mode.git" target="_blank"
+                                            class="project-link">
+                                            <i class="ph ph-github-logo"></i> <span data-i18n="proj-src">GITHUB
+                                                SOURCE</span>
+                                        </a>
+                                        <a href="https://www.mediafire.com/file/wmefmmjfk2grwox/sentry_mode.py/file"
+                                            target="_blank" class="project-link project-link-secondary">
+                                            <i class="ph ph-download"></i> <span data-i18n="proj-download-link">DOWNLOAD
+                                                LINK</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: CodeSense AI -->
+                    <div class="project-card-3d reveal">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <i class="ph ph-brain"></i>
+                                    <strong>CODESENSE AI</strong>
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle c1"></div>
+                                    <div class="circle c2"></div>
+                                    <div class="circle c3"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge">AI • Code Analysis</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title"><strong data-i18n="proj-5-name">CodeSense AI</strong></p>
+                                        </div>
+                                        <p class="card-footer" data-i18n="proj-5-desc">AI-powered code snippet explainer
+                                        </p>
+                                    </div>
+                                    <div class="project-actions">
+                                        <a href="https://github.com/rushanhaque/CodeSense-AI.git" target="_blank"
+                                            class="project-link">
+                                            <i class="ph ph-github-logo"></i> <span data-i18n="proj-src">GITHUB
+                                                SOURCE</span>
+                                        </a>
+                                        <a href="https://code-sense-ai-omega.vercel.app/" target="_blank"
+                                            class="project-link project-link-secondary">
+                                            <i class="ph ph-arrow-square-out"></i> <span data-i18n="proj-live-link">LIVE
+                                                DEMO</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project: More Coming Soon -->
+                    <div class="project-card-3d reveal">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <i class="ph ph-hourglass-medium"></i>
+                                    <strong>COMING SOON</strong>
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <div class="circle c1"
+                                        style="background: linear-gradient(135deg, #333 0%, #000 100%);"></div>
+                                    <div class="circle c2"></div>
+                                    <div class="circle c3"></div>
+                                </div>
+                                <div class="front-content">
+                                    <small class="badge">In Development • Future</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title"><strong data-i18n="proj-more-title">More
+                                                    Computing...</strong></p>
+                                        </div>
+                                        <p class="card-footer" data-i18n="proj-more-desc">Additional innovative projects
+                                            are currently in development. Stay tuned for updates.</p>
+                                    </div>
+                                    <div class="project-actions">
+                                        <button id="open-notify-modal" class="project-link"
+                                            style="background: var(--accent-color); color: #000; border: none; cursor: pointer; width: 100%; justify-content: center;">
+                                            <i class="ph ph-bell-ringing"></i> <span data-i18n="proj-get-notified">GET
+                                                NOTIFIED</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="scroll-btn right" id="scrollRight" aria-label="Scroll Right">
+                    <div class="round">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+
+
+        <section id="blogs" class="blogs">
+            <div class="blogs-grid-wrapper">
+                <div class="blogs-spacer"></div>
+
+                <div class="blogs-right-col reveal">
+                    <div class="section-header-inline">
+                        <h2 data-i18n="works-title">BLOGS & <span>RESEARCHES</span></h2>
+                        <div class="line"></div>
+                    </div>
+
+                    <div class="blogs-content">
+                        <div class="coming-soon-card glass-panel">
+                            <div class="cs-icon"><i class="ph ph-read-cv-logo"></i></div>
+                            <h3 data-i18n="archive-title">Archive</h3>
+                            <p data-i18n="archive-desc">A dedicated repository for my published research papers,
+                                articles, write-ups etc.</p>
+                            <div class="loading-bar">
+                                <div class="bar-fill"></div>
+                            </div>
+                            <span class="status-text" data-i18n="archive-status">Uploading soon...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="contact-grid-wrapper">
+                <!-- Spacer -->
+                <div class="contact-spacer"></div>
+
+                <!-- Right Content -->
+                <div class="contact-right-col reveal">
+                    <div class="contact-text">
+                        <h2 data-i18n="contact-title"><span class="blink-icon"><i
+                                    class="ph ph-paperclip"></i></span>CONNECT</h2>
+                        <p data-i18n="contact-desc"> Open for Discussions, Ideas and Opportunities <br> Forever valuing
+                            intellectual
+                            conversations and diverse perspectives. <br> Always up for interpretations. <br> Feel free
+                            to
+                            reach out through any of the platforms listed below.</p>
+                    </div>
+
+                    <!-- Socials -->
+                    <div class="social-links-grid">
+                        <a href="mailto:rushanulhaque@gmail.com" class="social-icon sc-email" title="Email">
+                            <i class="ph ph-envelope-simple"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rushanhaque?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                            target="_blank" class="social-icon sc-linkedin" title="LinkedIn">
+                            <i class="ph ph-linkedin-logo"></i>
+                        </a>
+                        <a href="https://github.com/rushanhaque" target="_blank" class="social-icon sc-github"
+                            title="GitHub">
+                            <i class="ph ph-github-logo"></i>
+                        </a>
+                        <a href="https://www.instagram.com/rushanhaque?igsh=MTN1eTBlMG45andoZw%3D%3D&utm_source=qr"
+                            target="_blank" class="social-icon sc-instagram" title="Instagram">
+                            <i class="ph ph-instagram-logo"></i>
+                        </a>
+                        <a href="https://wa.me/917668047608" target="_blank" class="social-icon sc-whatsapp"
+                            title="WhatsApp">
+                            <i class="ph ph-whatsapp-logo"></i>
+                        </a>
+                    </div>
+
+                    <!-- Contact Modal Trigger -->
+                    <button id="open-contact-modal" class="view-posts-btn"
+                        style="margin-top: 2.5rem; width: fit-content; padding: 6px 6px 6px 20px;">
+                        <span class="btn-text" data-i18n="form-open">Write Me a Message</span>
+                        <span class="btn-icon">
+                            <i class="ph ph-pencil-simple-line" style="font-size: 1.1rem;"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+
+    <button id="back-to-top" title="Back to Top">
+        <i class="ph ph-arrow-up"></i>
+    </button>
+
+
+
+    <div id="contact-modal" class="contact-modal-overlay">
+        <div class="modal-overlay"></div>
+        <div class="modal-content contact-modal-content reveal active">
+            <button class="modal-close-btn" id="close-contact-modal">
+                <i class="ph ph-x"></i>
+            </button>
+            <div class="modal-header">
+                <h3 data-i18n="form-title">Send a Message</h3>
+                <p data-i18n="form-subtitle">I'll get back to you as soon as possible.</p>
+            </div>
+            <form action="https://formspree.io/f/xkovwqgp" method="POST" class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name" data-i18n="form-name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-i18n="form-email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject" data-i18n="form-subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" data-i18n="form-message">Message</label>
+                    <textarea id="message" name="message" rows="2" placeholder="Your message here..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="submit-btn" style="border-radius: 12px;">
+                    <span class="btn-text" data-i18n="form-send">Send Message</span>
+                    <i class="ph ph-paper-plane-tilt"></i>
+                </button>
+                <div id="form-status" class="form-status"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Skills Modal -->
+    <div id="skills-modal" class="contact-modal-overlay">
+        <div class="modal-overlay"></div>
+        <div class="modal-content skills-modal-content reveal active">
+            <button class="modal-close-btn" id="close-skills-modal">
+                <i class="ph ph-x"></i>
+            </button>
+            <div class="modal-header">
+                <h3 data-i18n="skills-title">Technical Expertise</h3>
+                <p data-i18n="skills-subtitle">Proficiencies & Technologies</p>
+            </div>
+            <div class="skills-grid-modal">
+                <div class="skill-tag-large">
+                    <i class="ph ph-code-block"></i>
+                    <span>Web/App Dev</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-terminal-window"></i>
+                    <span>Software Eng.</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-cpu"></i>
+                    <span>AI</span>
+                </div>
+
+                <div class="skill-tag-large">
+                    <i class="ph ph-chart-line-up"></i>
+                    <span>Data Analysis</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-fingerprint"></i>
+                    <span>Cyber Security</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-shield-checkered"></i>
+                    <span>Ethical Hacking</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-git-branch"></i>
+                    <span>GIT</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-blueprint"></i>
+                    <span>CAD</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-kanban"></i>
+                    <span>Project Mgmt</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-megaphone-simple"></i>
+                    <span>Digital Marketing</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-shopping-cart-simple"></i>
+                    <span>E-commerce</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-storefront"></i>
+                    <span>Merchandising</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-pen-nib"></i>
+                    <span>Content Writing</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-bezier-curve"></i>
+                    <span>Graphic Design</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-paint-brush-broad"></i>
+                    <span>Canva</span>
+                </div>
+                <div class="skill-tag-large">
+                    <i class="ph ph-aperture"></i>
+                    <span>Video/Photo Editing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notify Modal -->
+    <div id="notify-modal" class="contact-modal-overlay">
+        <div class="modal-overlay"></div>
+        <div class="modal-content contact-modal-content reveal active" style="max-width: 350px;">
+            <button class="modal-close-btn" id="close-notify-modal">
+                <i class="ph ph-x"></i>
+            </button>
+            <div class="modal-header">
+                <h3 data-i18n="notify-title">Get Notified</h3>
+                <p data-i18n="notify-subtitle">Stay updated on new project launches.</p>
+            </div>
+            <form action="https://formspree.io/f/xwvnernw" method="POST" id="notify-form" class="contact-form">
+                <input type="hidden" name="_subject" value="New Project Notification Request">
+                <div class="form-group" style="grid-column: span 2;">
+                    <label for="notify-email" data-i18n="form-email">Email Address</label>
+                    <input type="email" id="notify-email" name="email" placeholder="email@example.com" required>
+                </div>
+                <button type="submit" class="submit-btn" style="border-radius: 12px; width: 100%; margin-top: 1rem;">
+                    <span class="btn-text" data-i18n="notify-btn">Subscribe</span>
+                    <i class="ph ph-bell-ringing"></i>
+                </button>
+                <div id="notify-status" class="form-status"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

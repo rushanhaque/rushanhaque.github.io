@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credentials Archive | Rushan Ul Haque</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .cert-page {
+            min-height: 100vh;
+            background: #050505;
+            padding: 8vh 10%;
+        }
+
+        .cert-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .cert-hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--accent-color), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .cert-hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .cert-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .cert-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(var(--accent-color-rgb), 0.3);
+            transform: translateY(-5px);
+        }
+
+        .cert-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(var(--accent-color-rgb), 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .cert-card h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .cert-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: translate(-50%, -50%) scale(0.7);
+            }
+
+            to {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 3rem;
+            color: #fff;
+            font-size: 3rem;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-color);
+            transform: rotate(90deg);
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(var(--accent-color-rgb), 0.1);
+            border-color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div id="sukuna-cursor">
+        <img src="assets/images/cursor_v2.png" alt="cursor" class="arrow-img">
+    </div>
+
+    <!-- Initialize cursor immediately -->
+    <script>
+        // Cursor tracking - standalone version for certificates page
+        const cursor = document.getElementById('sukuna-cursor');
+        if (cursor) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            // Add cursor-active class on interactive elements
+            const interactiveElements = document.querySelectorAll('a, .cert-card, .modal-close');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('cursor-active');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('cursor-active');
+                });
+            });
+        }
+    </script>
+
+    <div class="cert-page">
+        <div class="cert-hero">
+            <h1>Credentials Archive</h1>
+            <p>Professional certifications, achievements, and recognitions</p>
+        </div>
+
+        <div class="cert-grid" id="cert-grid"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="cert-modal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div class="modal-caption" id="modal-caption"></div>
+    </div>
+
+    <script src="cms.js"></script>
+    <script>
+        // Local backup data (used if cms.js fails or loads late)
+        const certificates = [
+            { name: 'AI in Digital Marketing', file: 'AI in Digital Marketing.jpeg', icon: 'ph-brain' },
+            { name: 'Campus Ambassador Internship', file: 'Campus ambassador internship.png', icon: 'ph-users-three' },
+            { name: 'Cisco Python Basics', file: 'Cisco Python basics.png', icon: 'ph-code' },
+            { name: 'Oracle Cloud Infrastructure', file: 'Oracle cloud infastructure.png', icon: 'ph-cloud-check' },
+            { name: 'Oracle Fusion AI', file: 'Oracle fusion AI.png', icon: 'ph-brain' },
+            { name: 'Python Training', file: 'Python training.png', icon: 'ph-terminal-window' },
+            { name: 'Ethical Hacking Masterclass', file: 'Ethical hacking masterclass.png', icon: 'ph-shield-check' },
+            { name: 'DUCAT Industrial Visit', file: 'DUCAT VISIT.png', icon: 'ph-factory' },
+            { name: 'Fund Raising & Social Work', file: 'Fund raising social work-ex.png', icon: 'ph-hand-heart' },
+            { name: 'The Imitation Game - 2nd Position', file: 'Screenshot 2026-01-28 132707.png', icon: 'ph-trophy' },
+            { name: 'College Event Recognition', file: 'College event.png', icon: 'ph-medal' },
+            { name: 'Academic Achievement', file: 'College event.jpeg', icon: 'ph-student' },
+            { name: 'Campus Participation', file: 'College event (2).png', icon: 'ph-star' },
+            { name: 'Extra-Curricular Excellence', file: 'college event (2).jpeg', icon: 'ph-certificate' },
+            { name: 'Web Development Offer Letter', file: 'Web development offer letter.jpeg', icon: 'ph-code' }
+        ];
+
+        // NEW LOGIC: Dynamic Loading from CMS.js
+        async function initPage() {
+            const grid = document.getElementById('cert-grid');
+
+            // Show loading if sheet is configured
+            if (typeof CMS !== 'undefined' && CMS.sheetUrl) {
+                grid.innerHTML = '<div style="width:100%; text-align:center; padding:2rem; color:rgba(255,255,255,0.5)">Loading content...</div>';
+            }
+
+            // Get data (from CMS or fallback to local 'certificates' variable)
+            let certsData = (typeof CMS !== 'undefined') ? await CMS.getCertificates() : certificates;
+
+            // Clear grid
+            grid.innerHTML = '';
+
+            // Generate cards
+            certsData.forEach(cert => {
+                const card = document.createElement('div');
+                card.className = 'cert-card';
+
+                // Handle image path logic: Supports both local files and full URLs
+                let imgPath = cert.file;
+                if (imgPath && !imgPath.startsWith('http') && !imgPath.startsWith('assets/')) {
+                    imgPath = 'assets/cert_images/' + imgPath;
+                }
+
+                // Pass full processed path to modal
+                card.onclick = () => openModal(imgPath, cert.name);
+
+                card.innerHTML = `
+                    <div class="cert-icon">
+                        <i class="ph ${cert.icon}"></i>
+                    </div>
+                    <h3>${cert.name}</h3>
+                    <p>Click to view certificate</p>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Modal functions
+        function openModal(imageSrc, title) {
+            const modal = document.getElementById('cert-modal');
+            const img = document.getElementById('modal-img');
+            const caption = document.getElementById('modal-caption');
+
+            modal.style.display = 'block';
+            img.src = imageSrc; // Use full src directly
+            caption.textContent = title;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('cert-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        // Close on background click
+        const modal = document.getElementById('cert-modal');
+        if (modal) {
+            modal.onclick = function (e) {
+                if (e.target === this) closeModal();
+            };
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Start
+        initPage();
+    </script>
+
+    <!-- Load main script for cursor functionality -->
+    <script src="script.js"></script>
+</body>
+
+</html>

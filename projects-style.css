@@ -1,0 +1,83 @@
+/* Project Card GitHub Link Styling - Blue Theme */
+.project-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    /* Slightly reduced horizontal padding */
+    background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+    color: #000;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    /* Slightly reduced for long labels */
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    /* Reduced spacing */
+    text-transform: uppercase;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 153, 255, 0.3);
+    white-space: nowrap;
+}
+
+.project-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+    background: linear-gradient(135deg, #0099ff 0%, #00d4ff 100%);
+}
+
+.project-link-secondary {
+    background: linear-gradient(135deg, rgba(0, 153, 255, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%);
+    border: 1px solid #00d4ff;
+    color: #00d4ff;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    text-transform: none;
+    /* Allow lowercase for install commands */
+}
+
+.project-link-secondary:hover {
+    background: linear-gradient(135deg, rgba(0, 153, 255, 0.25) 0%, rgba(0, 212, 255, 0.25) 100%);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+    border-color: #00d4ff;
+    color: #00d4ff;
+}
+
+.project-link i {
+    font-size: 1.1rem;
+}
+
+.back-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding: 2rem;
+}
+
+.back-content i:first-child {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #00d4ff;
+}
+
+.back-content strong {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+}
