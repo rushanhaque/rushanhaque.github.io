@@ -1072,17 +1072,7 @@ function initMobileScrollEffects() {
             isSwiping = true;
         }, { passive: true });
 
-        projectSlider.addEventListener('touchmove', (e) => {
-            if (!isSwiping) return;
-            const diffX = startX - e.touches[0].clientX;
-            const diffY = startY - e.touches[0].clientY;
-
-            // If swiping horizontally more than vertically
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                // Prevent vertical scroll while swiping projects
-                if (e.cancelable) e.preventDefault();
-            }
-        }, { passive: false });
+        // Removed blocking touchmove listener to allow native CSS scroll
 
         projectSlider.addEventListener('touchend', (e) => {
             if (!isSwiping) return;
