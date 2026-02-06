@@ -1131,6 +1131,26 @@ function initMobileScrollEffects() {
         document.getElementById('contact-modal')?.classList.add('active');
     });
 
+    // Mobile Project Arrows
+    setTimeout(() => {
+        const slider = document.querySelector('.m-projects-slider');
+        const leftBtn = document.getElementById('m-proj-left');
+        const rightBtn = document.getElementById('m-proj-right');
+
+        if (slider && leftBtn && rightBtn) {
+            leftBtn.addEventListener('click', () => {
+                triggerHaptic('light');
+                slider.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+
+            rightBtn.addEventListener('click', () => {
+                triggerHaptic('light');
+                slider.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+        }
+    }, 100);
+
+
     // CV Download Interactions (PDF Conversion)
     const cvLinks = document.querySelectorAll('a[href*="Resume.jpg"]');
     cvLinks.forEach(link => {

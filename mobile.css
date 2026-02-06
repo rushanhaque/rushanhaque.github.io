@@ -598,6 +598,34 @@
         border-style: dashed;
     }
 
+    /* Scroll Arrows */
+    .m-scroll-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(10, 10, 10, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--accent-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .m-scroll-btn.m-left {
+        left: 5px;
+    }
+
+    .m-scroll-btn.m-right {
+        right: 5px;
+    }
+
     .m-coming-icon {
         font-size: 3rem;
         color: var(--accent-color);
