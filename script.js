@@ -3,6 +3,8 @@ const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 
 let width, height, stars;
+let tiltX = 0, tiltY = 0;
+let targetTiltX = 0, targetTiltY = 0;
 
 const settings = {
     starCount: 250,
@@ -11,7 +13,8 @@ const settings = {
     maxSize: 1.5,
     glowSize: 10,
     starColor: '#ffffff',
-    accentColor: '#00e5ff'
+    accentColor: '#00e5ff',
+    tiltIntensity: 0.15
 };
 
 class Star {
@@ -31,8 +34,10 @@ class Star {
     }
 
     update() {
-        this.x += this.vx;
-        this.y += this.vy;
+        // Apply tilt with parallax (larger stars move more)
+        this.x += this.vx + (tiltX * (this.size / settings.maxSize));
+        this.y += this.vy + (tiltY * (this.size / settings.maxSize));
+
         if (this.x < 0) this.x = width;
         if (this.x > width) this.x = 0;
         if (this.y < 0) this.y = height;
@@ -80,6 +85,11 @@ function resize() {
 function animate() {
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, width, height);
+
+    // Smooth transition for tilt values
+    tiltX += (targetTiltX - tiltX) * 0.1;
+    tiltY += (targetTiltY - tiltY) * 0.1;
+
     stars.forEach(star => {
         star.update();
         star.draw();
@@ -87,12 +97,39 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
+// Device Orientation Listener
+function handleOrientation(e) {
+    if (window.innerWidth > 768) return; // Only for mobile/tablet
+
+    // gamma: left-to-right tilt [-90, 90]
+    // beta: front-to-back tilt [-180, 180]
+    targetTiltX = (e.gamma || 0) * settings.tiltIntensity;
+    targetTiltY = (e.beta || 0) * settings.tiltIntensity;
+}
+
+if (window.DeviceOrientationEvent) {
+    // Request permission for iOS 13+
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        document.addEventListener('click', () => {
+            DeviceOrientationEvent.requestPermission()
+                .then(response => {
+                    if (response === 'granted') {
+                        window.addEventListener('deviceorientation', handleOrientation);
+                    }
+                })
+                .catch(console.error);
+        }, { once: true });
+    } else {
+        window.addEventListener('deviceorientation', handleOrientation);
+    }
+}
+
 window.addEventListener('resize', resize);
 resize();
 // animate(); removed - will be started after loading
 
 
-// --- Sukuna Arrow Cursor Logic ---
+// Custom Cursor Logic
 const sukunaCursor = document.getElementById('sukuna-cursor');
 const cursorCoords = document.querySelector('.cursor-coords');
 let mouseX = 0, mouseY = 0;
@@ -121,7 +158,7 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
-// --- Spline Interaction (Deferred) ---
+// Spline 3D Viewer
 function initSpline() {
     const container = document.getElementById('spline-container');
     if (!container) return;
@@ -201,7 +238,7 @@ function initSpline() {
     });
 }
 
-// --- Scroll Reveal ---
+// Scroll Reveal
 function reveal() {
     const reveals = document.querySelectorAll('.reveal');
     reveals.forEach(r => {
@@ -298,9 +335,15 @@ if (contactForm) {
 
             if (response.ok) {
                 // Success
-                formStatus.innerHTML = translations[currentLang]['form-success'] || 'Message Sent Successfully!';
-                formStatus.className = 'form-status success';
+                if (window.innerWidth <= 768) {
+                    showToast('Message Sent Successfully!');
+                    triggerConfetti(); // Optional celebratory touch
+                } else {
+                    formStatus.innerHTML = (currentLang === 'fr' ? 'Merci! Votre message a été envoyé.' : (currentLang === 'de' ? 'Danke! Deine Nachricht wurde gesendet.' : 'Thank you! Your message has been sent.'));
+                    formStatus.className = 'status-message success show';
+                }
                 contactForm.reset();
+                setTimeout(() => document.getElementById('contact-modal')?.classList.remove('active'), 2000);
                 btnText.innerHTML = '<i class="ph ph-check-circle"></i>';
                 submitBtn.style.background = '#4ade80';
             } else {
@@ -508,8 +551,13 @@ if (matrixCanvas) {
     const fontSize = 14;
 
     function resizeMatrix() {
-        mWidth = 600; // Fixed size match CSS
-        mHeight = 600;
+        if (window.innerWidth <= 768) {
+            mWidth = window.innerWidth;
+            mHeight = window.innerHeight;
+        } else {
+            mWidth = 600; // Fixed size match CSS
+            mHeight = 600;
+        }
         matrixCanvas.width = mWidth;
         matrixCanvas.height = mHeight;
 
@@ -615,19 +663,19 @@ window.addEventListener('load', () => {
     updateNavbarTheme();
     const loader = document.getElementById('loader');
 
-    // 1. Start Heavy 3D Load very early (0.5s) to hide parsing lag behind the opaque loader
+    // Initial Load
     setTimeout(() => {
         initSpline();
     }, 500);
 
-    // 2. Start Canvas loops early (1.5s) to warm up the GPU while still covered
+    // Start Canvas
     setTimeout(() => {
         window.siteLoaded = true;
         if (typeof animate === 'function') animate();
         if (typeof window.startMatrix === 'function') window.startMatrix();
     }, 1500);
 
-    // 3. Final Reveal after everything has stabilized
+    // Final Reveal
     setTimeout(() => {
         if (loader) {
             loader.style.opacity = '0';
@@ -887,7 +935,7 @@ function initLanguageSwitcher() {
     setLanguage(preferredLang);
 }
 
-// Horizontal Scroll Logic (Projects)
+// Project Scroller
 function initProjectScroll() {
     const projectSlider = document.querySelector('.project-grid');
     const projectLeft = document.getElementById('scrollLeft');
@@ -903,6 +951,289 @@ function initProjectScroll() {
     }
 }
 
+// Mobile Utils
+let hasUserInteracted = false;
+window.addEventListener('mousedown', () => hasUserInteracted = true, { once: true });
+window.addEventListener('touchstart', () => hasUserInteracted = true, { once: true });
+
+function triggerHaptic(type = 'light') {
+    if (!navigator.vibrate || !hasUserInteracted) return;
+    if (type === 'light') navigator.vibrate(10);
+    else if (type === 'medium') navigator.vibrate(20);
+    else if (type === 'heavy') navigator.vibrate(50);
+}
+
+function showToast(message, icon = 'ph ph-check-circle') {
+    let toast = document.querySelector('.m-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'm-toast';
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<i class="${icon}"></i> <span>${message}</span>`;
+    toast.classList.add('active');
+    triggerHaptic('medium');
+
+    setTimeout(() => {
+        toast.classList.remove('active');
+    }, 3000);
+}
+
+function triggerConfetti() {
+    if (typeof confetti === 'function') {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#bed840', '#ffffff', '#222222'],
+            zIndex: 10001
+        });
+    }
+}
+
+// Mobile Scroll & Parallax
+function initMobileScrollEffects() {
+    if (window.innerWidth > 768) return;
+
+    const sections = document.querySelectorAll('#mobile-shell .m-section, #mobile-shell .m-hero');
+    const navItems = document.querySelectorAll('.m-nav-item');
+    const parallaxElements = document.querySelectorAll('.m-content-parallax');
+    const shell = document.getElementById('mobile-shell');
+    const pullRefresh = document.getElementById('m-pull-refresh');
+    const projectSlider = document.querySelector('.m-projects-slider');
+
+    let ticking = false;
+
+    // Scroll Handler
+    function onScroll() {
+        const scrolled = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        let currentSectionId = '';
+
+        // Scroll Spy Logic
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const sectionHeight = rect.height;
+            const top = section.offsetTop;
+
+            // Revert any inline styles applied by the previous fade effect
+            section.style.opacity = '';
+            section.style.transform = '';
+            section.style.filter = '';
+
+            if (scrolled >= top - 200 && scrolled < top + sectionHeight - 200) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        // Parallax Elements Logic
+        parallaxElements.forEach(el => {
+            const speed = parseFloat(el.getAttribute('data-speed')) || 0.15;
+            const parent = el.closest('.m-section') || el.closest('.m-hero');
+            if (!parent) return;
+
+            const rect = parent.getBoundingClientRect();
+            const parentTop = rect.top + scrolled;
+
+            if (scrolled + windowHeight > parentTop && scrolled < parentTop + parent.offsetHeight) {
+                const relativeScroll = scrolled - parentTop;
+                const offset = relativeScroll * speed;
+                const rotate = el.classList.contains('m-card') ? (relativeScroll * 0.01) : 0;
+                el.style.transform = `translate3d(0, ${offset}px, 0) rotateX(${-rotate}deg)`;
+            }
+        });
+
+        if (currentSectionId) {
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${currentSectionId}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+        }
+    });
+
+    // Swipe Gestures
+    if (projectSlider) {
+        let startX, startY, isSwiping = false;
+
+        projectSlider.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isSwiping = true;
+        }, { passive: true });
+
+        projectSlider.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+            const diffX = startX - e.touches[0].clientX;
+            const diffY = startY - e.touches[0].clientY;
+
+            // If swiping horizontally more than vertically
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                // Prevent vertical scroll while swiping projects
+                if (e.cancelable) e.preventDefault();
+            }
+        }, { passive: false });
+
+        projectSlider.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+
+            if (Math.abs(diffX) > 50) { // Threshold
+                triggerHaptic('light');
+            }
+            isSwiping = false;
+        });
+    }
+
+    // Pull to Refresh
+    let touchStartY = 0;
+    const threshPercent = 0.25;
+    const maxPull = 120;
+
+    window.addEventListener('touchstart', (e) => {
+        if (window.pageYOffset <= 0) {
+            touchStartY = e.touches[0].pageY;
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+        if (window.pageYOffset <= 0 && e.touches[0].pageY > touchStartY) {
+            const pull = Math.min(maxPull, (e.touches[0].pageY - touchStartY) * threshPercent);
+            if (pull > 0) {
+                pullRefresh.style.transform = `translateY(${pull}px)`;
+                shell.style.transform = `translateY(${pull}px)`;
+            }
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+        const pull = parseInt(shell.style.transform.replace('translateY(', '')) || 0;
+        if (pull >= 40) {
+            triggerHaptic('heavy');
+            showToast('Page Refreshed', 'ph ph-arrows-clockwise');
+            setTimeout(() => {
+                location.reload();
+            }, 800);
+        }
+        pullRefresh.style.transform = 'translateY(0)';
+        shell.style.transform = 'translateY(0)';
+    });
+
+    // Event Listeners
+    document.getElementById('m-skills-trigger')?.addEventListener('click', () => {
+        triggerHaptic('medium');
+        document.getElementById('skills-modal')?.classList.add('active');
+    });
+
+    document.getElementById('m-contact-trigger')?.addEventListener('click', () => {
+        triggerHaptic('medium');
+        document.getElementById('contact-modal')?.classList.add('active');
+    });
+
+    // CV Download Interactions (PDF Conversion)
+    const cvLinks = document.querySelectorAll('a[href*="Resume.jpg"]');
+    cvLinks.forEach(link => {
+        link.addEventListener('click', async (e) => {
+            e.preventDefault();
+            triggerHaptic('heavy');
+            triggerConfetti();
+
+            // Check for local filesystem (CORS restriction)
+            if (window.location.protocol === 'file:') {
+                if (typeof showToast === 'function') showToast('Local Mode: Downloading Image (PDF requires server)...');
+
+                // Native fallback for local testing
+                const tempLink = document.createElement('a');
+                tempLink.href = link.href;
+                tempLink.download = "Rushan_Haque_Resume.jpg";
+                tempLink.target = "_blank";
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+                return;
+            }
+
+            const originalText = link.innerHTML;
+            const btnText = link.querySelector('span');
+            if (btnText) btnText.textContent = "Generating PDF...";
+            if (typeof showToast === 'function') showToast('Preparing PDF...');
+
+            try {
+                // Access jsPDF
+                const { jsPDF } = window.jspdf;
+
+                // Load the image
+                const img = new Image();
+                img.setAttribute('crossOrigin', 'anonymous');
+                img.src = link.href;
+
+                await new Promise((resolve, reject) => {
+                    img.onload = resolve;
+                    img.onerror = reject;
+                });
+
+                // Create PDF (A4 format)
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                // Calculate dimensions to fit A4 (210mm x 297mm)
+                const imgProps = pdf.getImageProperties(img);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                // Add image to PDF
+                pdf.addImage(img, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+
+                // Save PDF
+                pdf.save('Rushan_Haque_Resume.pdf');
+
+                if (typeof showToast === 'function') showToast('PDF Downloaded!');
+
+            } catch (err) {
+                console.error("PDF Generation failed:", err);
+                if (typeof showToast === 'function') showToast('Error generating PDF, opening image...');
+                // Fallback: Open original image in new tab if PDF fails
+                window.open(link.href, '_blank');
+            } finally {
+                setTimeout(() => {
+                    link.innerHTML = originalText;
+                }, 2000);
+            }
+        });
+    });
+
+    // Mobile Reveal Observer
+    const mobileObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                if (entry.target.classList.contains('m-card')) triggerHaptic('light');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('#mobile-shell .reveal').forEach(el => mobileObserver.observe(el));
+
+    onScroll(); // Initial run
+}
+
+// Mobile Scroll Effects initialized in window load event below
+
+
 window.addEventListener('load', () => {
     initLanguageSwitcher();
     initProjectScroll();
@@ -910,5 +1241,6 @@ window.addEventListener('load', () => {
     initContactModal();
     initSkillsModal();
     initNotifyModal();
+    initMobileScrollEffects();
 });
 

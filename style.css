@@ -894,21 +894,7 @@ section {
     letter-spacing: 1px;
 }
 
-@media (max-width: 1100px) {
-    .bento-resume-grid {
-        grid-template-columns: 0.5fr 1fr;
-    }
-}
 
-@media (max-width: 768px) {
-    .bento-resume-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .bento-resume-grid>*:first-child {
-        grid-column: 1;
-    }
-}
 
 .resume-card {
     background: transparent;
@@ -1542,26 +1528,7 @@ section {
     /* Drops down from bottom into place */
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-    .bento-resume-grid {
-        grid-template-columns: 1fr 1fr;
-    }
 
-    .main-col {
-        grid-column: span 2;
-    }
-}
-
-@media (max-width: 768px) {
-    .bento-resume-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .main-col {
-        grid-column: span 1;
-    }
-}
 
 /* Terminal UI */
 .terminal-container {
@@ -1824,18 +1791,7 @@ section {
     }
 }
 
-@media (max-width: 768px) {
-    .footer-top {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
 
-    .footer-bottom {
-        flex-direction: column;
-        gap: 1.5rem;
-        text-align: center;
-    }
-}
 
 
 
@@ -1951,22 +1907,16 @@ section {
 }
 
 .submit-btn:hover {
-    background: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px var(--accent-glow);
+    filter: brightness(1.1);
+    box-shadow: 0 0 20px var(--accent-glow);
 }
 
 .submit-btn:active {
-    transform: translateY(-1px);
+    transform: scale(0.98);
 }
 
 .submit-btn i {
     font-size: 1.2rem;
-    transition: transform 0.3s ease;
-}
-
-.submit-btn:hover i {
-    transform: translate(3px, -3px) rotate(-10deg);
 }
 
 .form-status {
@@ -1985,19 +1935,7 @@ section {
     color: #f87171;
 }
 
-@media (max-width: 968px) {
-    .contact-grid-wrapper {
-        grid-template-columns: 1fr;
-    }
 
-    .contact-spacer {
-        display: none;
-    }
-
-    .contact-right-col {
-        padding: 2rem 1.5rem;
-    }
-}
 
 /* Animations */
 .reveal {
@@ -2026,33 +1964,7 @@ spline-viewer::part(loading-anim) {
     display: none !important;
 }
 
-@media (max-width: 968px) {
 
-    .about-grid,
-    .project-grid,
-    .blogs-grid-wrapper,
-    .contact-grid-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .project-card-3d {
-        max-width: 100%;
-        height: 350px;
-    }
-
-    .hero {
-        text-align: center;
-        align-items: center;
-    }
-
-    .hero-content p {
-        margin: 0 auto 3rem;
-    }
-
-    #three-container {
-        display: none;
-    }
-}
 
 /* 3D Flip Card Styles (Blue Theme Adapted) */
 .project-card-3d {
@@ -2458,21 +2370,7 @@ spline-viewer::part(loading-anim) {
     -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
 }
 
-@media (max-width: 768px) {
-    .project-slider-wrapper {
-        padding: 0;
-    }
 
-    .scroll-btn {
-        display: none;
-        /* Hide arrows on mobile, swipe is better */
-    }
-
-    .project-grid {
-        mask-image: none;
-        -webkit-mask-image: none;
-    }
-}
 
 /* Contact Watermark Logo */
 .contact-text {
