@@ -1,0 +1,39 @@
+/* Spotlight Effects for Project & Archive Cards */
+.project-card,
+.archive-card,
+.contact-panel {
+    position: relative;
+    overflow: hidden;
+}
+
+/* The Spotlight Beam */
+.project-card::after,
+.archive-card::after,
+.contact-panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+            rgba(255, 255, 255, 0.06),
+            transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.project-card:hover::after,
+.archive-card:hover::after,
+.contact-panel:hover::after {
+    opacity: 1;
+}
+
+/* Magnetic Buttons */
+.social-btn,
+.action-btn,
+.submit-btn {
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.3s ease, background 0.3s ease;
+}

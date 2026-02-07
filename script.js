@@ -97,32 +97,7 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-// Device Orientation Listener
-function handleOrientation(e) {
-    if (window.innerWidth > 768) return; // Only for mobile/tablet
 
-    // gamma: left-to-right tilt [-90, 90]
-    // beta: front-to-back tilt [-180, 180]
-    targetTiltX = (e.gamma || 0) * settings.tiltIntensity;
-    targetTiltY = (e.beta || 0) * settings.tiltIntensity;
-}
-
-if (window.DeviceOrientationEvent) {
-    // Request permission for iOS 13+
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        document.addEventListener('click', () => {
-            DeviceOrientationEvent.requestPermission()
-                .then(response => {
-                    if (response === 'granted') {
-                        window.addEventListener('deviceorientation', handleOrientation);
-                    }
-                })
-                .catch(console.error);
-        }, { once: true });
-    } else {
-        window.addEventListener('deviceorientation', handleOrientation);
-    }
-}
 
 window.addEventListener('resize', resize);
 resize();
@@ -264,6 +239,38 @@ function updateScrollProgress() {
 }
 window.addEventListener('scroll', updateScrollProgress);
 
+// --- Navbar Sync with Scroll ---
+function updateNavbarSync() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    let currentSection = '';
+    const scrollY = window.scrollY;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+
+        // Check if we're in this section (with offset for better UX)
+        if (scrollY >= sectionTop - 200) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href === '#' + currentSection) {
+            link.classList.add('active');
+        }
+    });
+
+
+}
+window.addEventListener('scroll', updateNavbarSync);
+window.addEventListener('load', updateNavbarSync);
+
+
 // --- Resume Card & Cert Interactions ---
 function initResumeInteractions() {
     const cards = document.querySelectorAll('.resume-card');
@@ -335,13 +342,8 @@ if (contactForm) {
 
             if (response.ok) {
                 // Success
-                if (window.innerWidth <= 768) {
-                    showToast('Message Sent Successfully!');
-                    triggerConfetti(); // Optional celebratory touch
-                } else {
-                    formStatus.innerHTML = (currentLang === 'fr' ? 'Merci! Votre message a été envoyé.' : (currentLang === 'de' ? 'Danke! Deine Nachricht wurde gesendet.' : 'Thank you! Your message has been sent.'));
-                    formStatus.className = 'status-message success show';
-                }
+                formStatus.innerHTML = (currentLang === 'fr' ? 'Merci! Votre message a été envoyé.' : (currentLang === 'de' ? 'Danke! Deine Nachricht wurde gesendet.' : 'Thank you! Your message has been sent.'));
+                formStatus.className = 'status-message success show';
                 contactForm.reset();
                 setTimeout(() => document.getElementById('contact-modal')?.classList.remove('active'), 2000);
                 btnText.innerHTML = '<i class="ph ph-check-circle"></i>';
@@ -551,13 +553,8 @@ if (matrixCanvas) {
     const fontSize = 14;
 
     function resizeMatrix() {
-        if (window.innerWidth <= 768) {
-            mWidth = window.innerWidth;
-            mHeight = window.innerHeight;
-        } else {
-            mWidth = 600; // Fixed size match CSS
-            mHeight = 600;
-        }
+        mWidth = 600; // Fixed size match CSS
+        mHeight = 600;
         matrixCanvas.width = mWidth;
         matrixCanvas.height = mHeight;
 

@@ -1,0 +1,112 @@
+/* Writing/Archive Section Styles */
+
+.archive-content {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.archive-card {
+    max-width: 500px;
+    width: 100%;
+    background: rgba(var(--accent-rgb), 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--accent-rgb), 0.15);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.archive-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            rgba(var(--accent-rgb), 0.05) 0%,
+            transparent 50%,
+            rgba(var(--accent-rgb), 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.archive-card:hover {
+    border-color: rgba(var(--accent-rgb), 0.3);
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(var(--accent-rgb), 0.2);
+    transform: translateY(-4px);
+}
+
+.archive-card:hover::before {
+    opacity: 1;
+}
+
+.archive-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+    filter: grayscale(0.3);
+    transition: all 0.4s ease;
+}
+
+.archive-card:hover .archive-icon {
+    opacity: 0.9;
+    transform: scale(1.1) rotate(5deg);
+}
+
+.archive-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.archive-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.coming-soon {
+    display: inline-block;
+}
+
+.coming-soon-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-neon);
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(var(--accent-rgb), 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4);
+    }
+}

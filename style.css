@@ -208,15 +208,13 @@ spline-viewer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem 2.6rem;
-    /* Increased size by another 15% */
+    padding: 0.83rem 3.02rem;
     background: rgba(10, 10, 10, 0.5);
     backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
     -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 100px;
-    gap: 3.8rem;
-    /* Increased gap */
+    gap: 4.54rem;
     box-shadow:
         0 8px 32px -4px rgba(0, 0, 0, 0.3),
         0 0 1px 0 rgba(255, 255, 255, 0.4) inset;
@@ -242,17 +240,16 @@ spline-viewer {
 .nav-links li a {
     text-decoration: none;
     color: var(--text-secondary);
-    font-size: 0.86rem;
-    /* Increased font size (0.75 -> 0.86) */
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding: 0.8rem 1.4rem;
-    /* Larger touch targets */
+    font-size: 1.35rem;
+    /* Increased size (~10%) */
+    padding: 0.9rem 1.4rem;
+    /* Increased padding (~10%) */
     border-radius: 50px;
     transition: all 0.3s ease;
     position: relative;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-links li a:hover {
@@ -263,25 +260,10 @@ spline-viewer {
 /* Active Link Indicator (Hacker Style) */
 .nav-links li a.active {
     color: var(--accent-color);
-    background: var(--accent-tint, rgba(158, 175, 72, 0.08));
+    background: rgba(var(--accent-color-rgb), 0.1);
 }
 
-.nav-links li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0.4rem;
-    left: 50%;
-    width: 0%;
-    height: 1.5px;
-    background: var(--accent-color);
-    box-shadow: 0 0 10px var(--accent-color);
-    transform: translateX(-50%);
-    transition: width 0.3s ease;
-}
 
-.nav-links li a:hover::after {
-    width: 30%;
-}
 
 /* Language Switcher */
 .lang-switcher {
@@ -378,6 +360,8 @@ section {
     font-family: var(--font-heading);
     font-size: 3rem;
     letter-spacing: 4px;
+    color: var(--accent-color);
+    /* Match page theme */
 }
 
 .section-header h2 span {
@@ -1592,7 +1576,12 @@ section {
     width: 80%;
 }
 
-/* Project Cards */
+/* Project Section Enhancements */
+.projects .section-header {
+    margin-bottom: 2rem;
+    /* Closer to tiles */
+}
+
 .project-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

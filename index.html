@@ -4,6 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function checkMobile() {
+            if (window.innerWidth <= 768) {
+                window.location.href = "mobile/index.html";
+            }
+        }
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+    </script>
     <title>Rushan Ul Haque | Innovative Developer & Portfolio</title>
     <meta name="description"
         content="Official portfolio of Rushan Ul Haque. Showcasing expertise in Python, AI systems, and interactive creative development.">
@@ -22,7 +31,7 @@
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mobile.css">
+
     <link rel="stylesheet" href="projects-style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,11 +79,11 @@
         <nav id="main-nav">
             <div class="nav-container">
                 <ul class="nav-links">
-                    <li><a href="#home" class="active" data-i18n="nav-home"><span>Home</span></a></li>
-                    <li><a href="#about" data-i18n="nav-about"><span>About</span></a></li>
-                    <li><a href="#projects" data-i18n="nav-projects"><span>Projects</span></a></li>
-                    <li><a href="#blogs" data-i18n="nav-works"><span>Works</span></a></li>
-                    <li><a href="#contact" data-i18n="nav-contact"><span>Contact</span></a></li>
+                    <li><a href="#home" class="active" title="Home"><i class="ph ph-house"></i></a></li>
+                    <li><a href="#about" title="About"><i class="ph ph-user"></i></a></li>
+                    <li><a href="#projects" title="Projects"><i class="ph ph-code"></i></a></li>
+                    <li><a href="#blogs" title="Works"><i class="ph ph-feather"></i></a></li>
+                    <li><a href="#contact" title="Contact"><i class="ph ph-envelope"></i></a></li>
                 </ul>
                 <div class="lang-switcher">
                     <button class="lang-btn" id="lang-menu-btn">
@@ -251,7 +260,7 @@
 
             <section id="projects" class="projects">
                 <div class="section-header reveal">
-
+                    <h2 data-i18n="nav-projects">PROJECTS</h2>
                     <div class="line"></div>
                 </div>
                 <div class="project-slider-wrapper">
@@ -616,290 +625,11 @@
     </button>
     </div> <!-- End #desktop-shell -->
 
-    <div id="m-pull-refresh">
-        <div class="m-refresh-loader"></div>
-    </div>
 
-    <nav id="m-bottom-nav">
-        <a href="#m-home" class="m-nav-item active" data-section="m-home">
-            <i class="ph ph-house"></i>
-            <span data-i18n="nav-home">Home</span>
-        </a>
-        <a href="#m-about" class="m-nav-item" data-section="m-about">
-            <i class="ph ph-user"></i>
-            <span data-i18n="nav-about">About</span>
-        </a>
-        <a href="#m-projects" class="m-nav-item" data-section="m-projects">
-            <i class="ph ph-flask"></i>
-            <span data-i18n="nav-projects">Lab</span>
-        </a>
-        <a href="#m-blogs" class="m-nav-item" data-section="m-blogs">
-            <i class="ph ph-article"></i>
-            <span data-i18n="nav-blogs">Blog</span>
-        </a>
-        <a href="#m-contact" class="m-nav-item" data-section="m-contact">
-            <i class="ph ph-chat-circle"></i>
-            <span data-i18n="nav-contact">Connect</span>
-        </a>
-    </nav>
 
-    <div id="mobile-shell">
-        <section id="m-home" class="m-hero">
-            <div class="m-hero-content reveal active m-content-parallax" data-speed="0.2">
-                <h1 class="glitch" data-text="CRAFTING THE">
-                    <span class="subtitle-word" data-i18n="hero-name">RUSHAN HAQUE</span>
-                    <br>
-                    <span class="hero-role" data-i18n="hero-role">Aspiring Developer & Writer</span>
-                </h1>
-            </div>
-        </section>
 
-        <section id="m-about" class="m-section parallax-section">
-            <div class="m-section-header m-content-parallax" data-speed="0.1">
-                <span class="m-tag">01</span>
-                <h2 data-i18n="nav-about">ABOUT ME</h2>
-            </div>
 
-            <div class="m-content-parallax" data-speed="0.12">
-                <!-- Bio Card -->
-                <div class="m-card m-bio-card glass-panel">
-                    <div class="m-card-glow"></div>
-                    <p class="m-bio-text" data-i18n="bio-text">
-                        Tech-driven individual with a strong focus towards problem solving and critical thinking, I
-                        enjoy
-                        transforming ideas into practical solutions and consistently seek out new perspectives and
-                        innovative approaches.
-                        <br><br>
-                        I learn, design, and develop out of genuine passion for the craft.
-                        <br><br>
-                        Alongside, I write with a deep appreciation for language, expression, and intellectual depth
-                    </p>
-                </div>
 
-                <!-- Hobby Grid -->
-                <div class="m-hobbies-grid">
-                    <div class="m-hobby-tile glass-panel">
-                        <i class="ph ph-airplane"></i>
-                        <span data-i18n="p-travel">Travelling</span>
-                    </div>
-                    <div class="m-hobby-tile glass-panel">
-                        <i class="ph ph-camera"></i>
-                        <span data-i18n="p-photo">Photography</span>
-                    </div>
-                    <div class="m-hobby-tile glass-panel">
-                        <i class="ph ph-pen-nib"></i>
-                        <span data-i18n="p-write">Writing</span>
-                    </div>
-                    <div class="m-hobby-tile glass-panel">
-                        <i class="ph ph-soccer-ball"></i>
-                        <span data-i18n="p-football">Football</span>
-                    </div>
-                </div>
-
-                <!-- Languages -->
-                <div class="m-card m-lang-card glass-panel">
-                    <h3 data-i18n="skills-subtitle">Languages</h3>
-                    <div class="m-lang-list">
-                        <div class="m-lang-item"><span>English</span>
-                            <div class="m-dots"><span></span><span></span><span></span><span></span><span></span></div>
-                        </div>
-                        <div class="m-lang-item"><span>Hindi/Urdu</span>
-                            <div class="m-dots"><span></span><span></span><span></span><span></span><span></span></div>
-                        </div>
-                        <div class="m-lang-item"><span>French</span>
-                            <div class="m-dots"><span></span><span></span><span></span><span class="off"></span><span
-                                    class="off"></span></div>
-                        </div>
-                        <div class="m-lang-item"><span>German</span>
-                            <div class="m-dots"><span></span><span></span><span></span><span class="off"></span><span
-                                    class="off"></span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Academic Foundation -->
-                <div class="m-card m-edu-card glass-panel">
-                    <h3 data-i18n="edu-title">Academic Foundation</h3>
-                    <div class="m-timeline">
-                        <div class="m-timeline-item">
-                            <span class="m-year">2023 — 27</span>
-                            <h4 data-i18n="edu-1-deg">B.Tech CS (IOT)</h4>
-                            <p data-i18n="edu-1-inst">Moradabad Institute of Technology</p>
-                        </div>
-                        <div class="m-timeline-item">
-                            <span class="m-year">2021 — 23</span>
-                            <h4 data-i18n="edu-2-deg">Senior Secondary Education</h4>
-                            <p data-i18n="edu-2-inst">Bonny Anne Public School</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="m-actions">
-                    <a href="certificates.html" class="m-btn m-btn-outline">
-                        <span data-i18n="edu-certs">Certificates</span>
-                        <i class="ph ph-arrow-square-out"></i>
-                    </a>
-                    <a href="assets/CV/Modern Minimalist CV Resume.jpg" download="Rushan_Haque_Resume.jpg"
-                        target="_blank" class="m-btn m-btn-primary">
-                        <span data-i18n="hero-resume">Download CV</span>
-                        <i class="ph ph-download-simple"></i>
-                    </a>
-                    <button class="m-btn m-btn-outline" id="m-skills-trigger">
-                        <span data-i18n="nav-skills">Skills</span>
-                        <i class="ph ph-code"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-        <section id="m-projects" class="m-section">
-            <div class="m-section-header m-content-parallax" data-speed="0.1">
-                <span class="m-tag">02</span>
-                <h2 data-i18n="nav-projects">CREATIVE LAB</h2>
-            </div>
-
-            <div class="m-projects-slider-container" style="position: relative;">
-                <button class="m-scroll-btn m-left" id="m-proj-left"><i class="ph ph-caret-left"></i></button>
-                <button class="m-scroll-btn m-right" id="m-proj-right"><i class="ph ph-caret-right"></i></button>
-
-                <div class="m-projects-slider">
-                    <!-- Project 1: ShadowChat -->
-                    <div class="m-project-card glass-panel reveal">
-                        <div class="m-project-badge">ENCRYPTED • CHAT</div>
-                        <h3 data-i18n="proj-1-name">ShadowChat</h3>
-                        <p data-i18n="proj-1-desc">Encrypted burn-after-read private chatroom</p>
-                        <div class="m-project-links">
-                            <a href="https://github.com/rushanhaque/SHADOW_CHAT.git" target="_blank"><i
-                                    class="ph ph-github-logo"></i></a>
-                            <a href="https://shadow-chat-7ifp.onrender.com" target="_blank"><i
-                                    class="ph ph-arrow-square-out"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Project 2: GitHub Auto-Push -->
-                    <div class="m-project-card glass-panel reveal">
-                        <div class="m-project-badge">UTILITY • AUTOMATION</div>
-                        <h3 data-i18n="proj-2-name">GitHub Auto-Push</h3>
-                        <p data-i18n="proj-2-desc">Automated Git repo-upload tool</p>
-                        <div class="m-project-links">
-                            <a href="https://github.com/rushanhaque/Auto-Repo-push.git" target="_blank"><i
-                                    class="ph ph-github-logo"></i></a>
-                            <a href="https://rushanhaque.itch.io/autorepopusher" target="_blank"><i
-                                    class="ph ph-download"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Project 3: ShadowKill -->
-                    <div class="m-project-card glass-panel reveal">
-                        <div class="m-project-badge">SECURITY • PYTHON</div>
-                        <h3 data-i18n="proj-3-name">ShadowKill</h3>
-                        <p data-i18n="proj-3-desc">Audio triggered panic task-kill system</p>
-                        <div class="m-project-links">
-                            <a href="https://github.com/rushanhaque/killswitch/releases/tag/trial" target="_blank"
-                                title="pip install shadowkill_ruh">
-                                <i class="ph ph-github-logo"></i>
-                            </a>
-                            <a href="https://github.com/rushanhaque/killswitch/releases/tag/trial" target="_blank"
-                                title="pip install shadowkill_ruh">
-                                <i class="ph ph-terminal-window"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 4: Sentry Mode -->
-                    <div class="m-project-card glass-panel reveal">
-                        <div class="m-project-badge">IOT • ARDUINO</div>
-                        <h3 data-i18n="proj-4-name">Sentry Mode</h3>
-                        <p data-i18n="proj-4-desc">Anti-interference detection system with alarm</p>
-                        <div class="m-project-links">
-                            <a href="https://github.com/rushanhaque/sentry-mode.git" target="_blank"><i
-                                    class="ph ph-github-logo"></i></a>
-                            <a href="https://www.mediafire.com/file/wmefmmjfk2grwox/sentry_mode.py/file"
-                                target="_blank"><i class="ph ph-download"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Project 5: CodeSense AI -->
-                    <div class="m-project-card glass-panel reveal">
-                        <div class="m-project-badge">AI • ANALYSIS</div>
-                        <h3 data-i18n="proj-5-name">CodeSense AI</h3>
-                        <p data-i18n="proj-5-desc">AI-powered code snippet explainer</p>
-                        <div class="m-project-links">
-                            <a href="https://github.com/rushanhaque/CodeSense-AI.git" target="_blank"><i
-                                    class="ph ph-github-logo"></i></a>
-                            <a href="https://code-sense-ai-omega.vercel.app/" target="_blank"><i
-                                    class="ph ph-arrow-square-out"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Project 6: More -->
-                    <div class="m-project-card glass-panel m-coming-soon reveal">
-                        <div class="m-coming-icon"><i class="ph ph-hourglass-medium"></i></div>
-                        <h3 data-i18n="proj-more-title">More Computing...</h3>
-                        <p data-i18n="proj-more-desc">New projects in development.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="m-blogs" class="m-section">
-            <div class="m-section-header m-content-parallax" data-speed="0.1">
-                <span class="m-tag">03</span>
-                <h2 data-i18n="works-title">BLOGS & RESEARCHES</h2>
-            </div>
-
-            <div class="m-content-parallax">
-                <div class="m-card m-blog-card glass-panel reveal">
-                    <div class="m-blog-icon-wrapper">
-                        <i class="ph ph-read-cv-logo"></i>
-                    </div>
-                    <h3 data-i18n="archive-title">Archive</h3>
-                    <p data-i18n="archive-desc">A dedicated repository for my published research papers, articles,
-                        write-ups etc.</p>
-
-                    <div class="m-loading-container">
-                        <div class="m-loading-bar-fill"></div>
-                    </div>
-                    <span class="m-status-text" data-i18n="archive-status">Uploading soon...</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="m-contact" class="m-section">
-            <div class="m-section-header m-content-parallax" data-speed="0.1">
-                <span class="m-tag">04</span>
-                <h2 data-i18n="contact-title">CONNECT</h2>
-            </div>
-
-            <div class="m-content-parallax">
-                <div class="m-card m-contact-card glass-panel reveal">
-                    <p class="m-contact-desc" data-i18n="contact-desc">
-                        Open for Discussions, Ideas and Opportunities <br>
-                        Forever valuing intellectual conversations and diverse perspectives. <br>
-                        Always up for interpretations.
-                    </p>
-
-                    <div class="m-social-links">
-                        <a href="mailto:rushanulhaque@gmail.com" class="m-social-icon"><i
-                                class="ph ph-envelope-simple"></i></a>
-                        <a href="https://github.com/rushanhaque" target="_blank" class="m-social-icon"><i
-                                class="ph ph-github-logo"></i></a>
-                        <a href="https://www.linkedin.com/in/rushanhaque" target="_blank" class="m-social-icon"><i
-                                class="ph ph-linkedin-logo"></i></a>
-                        <a href="https://wa.me/917668047608" target="_blank" class="m-social-icon"><i
-                                class="ph ph-whatsapp-logo"></i></a>
-                        <a href="https://www.instagram.com/rushan_haq/" target="_blank" class="m-social-icon"><i
-                                class="ph ph-instagram-logo"></i></a>
-                    </div>
-
-                    <button class="m-btn m-btn-primary" id="m-contact-trigger" style="width: 100%;">
-                        <span data-i18n="form-open">Write Me a Message</span>
-                        <i class="ph ph-paper-plane-tilt"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-    </div> <!-- End #mobile-shell -->
 
 
 
