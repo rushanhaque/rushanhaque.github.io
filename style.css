@@ -605,7 +605,7 @@ main {
   position: relative;
   background: rgba(255, 248, 242, 0.70);
   padding: 20px;
-  border: 1px solid rgba(139, 26, 46, 0.12);
+  border: 1px solid rgba(26, 58, 110, 0.12);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 14px;
@@ -1151,13 +1151,13 @@ main {
 }
 
 .witcher-card {
-  --wc-bg-dark: #f5ede6;
-  --wc-bg-light: #ede0d6;
-  --wc-silver: #7a3040;
-  --wc-silver-dark: #c4a49e;
-  --wc-gold: #8b1a2e;
-  --wc-eye-glow: #8b1a2e;
-  --wc-magic-aura: rgba(139, 26, 46, 0.12);
+  --wc-bg-dark: #e8eef8;
+  --wc-bg-light: #dce5f5;
+  --wc-silver: #1e3a6e;
+  --wc-silver-dark: #6b8ec7;
+  --wc-gold: #0d2b5e;
+  --wc-eye-glow: #0d2b5e;
+  --wc-magic-aura: rgba(26, 58, 110, 0.12);
 
   position: relative;
   width: 100%;
@@ -1190,7 +1190,7 @@ main {
       transparent 4px
     );
 
-  box-shadow: 0 1em 2em rgba(139, 26, 46, 0.12), inset 0 0 2em rgba(0,0,0,0.04);
+  box-shadow: 0 1em 2em rgba(26, 58, 110, 0.12), inset 0 0 2em rgba(0,0,0,0.04);
 }
 
 .witcher-card::before {
@@ -1291,7 +1291,7 @@ main {
 }
 
 .witcher-card:hover {
-  box-shadow: 0 1.5em 3em rgba(139, 26, 46, 0.2);
+  box-shadow: 0 1.5em 3em rgba(26, 58, 110, 0.20);
   border-color: var(--wc-silver);
 }
 
@@ -3388,5 +3388,6 @@ body::before {
 }
 
 .preview-fallback-link:hover { background: hsl(220, 55%, 28%); }
+
 
 
