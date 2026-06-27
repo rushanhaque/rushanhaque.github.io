@@ -374,7 +374,7 @@ main {
 }
 
 .sidebar .title {
-  color: #5A1F28;
+  color: #1a3a6e;
   background: var(--onyx);
   font-size: var(--fs-6);
   font-weight: var(--fw-400);
@@ -386,7 +386,7 @@ main {
 }
 
 .sidebar-info-text {
-  color: #5A1F28;
+  color: #1a3a6e;
   font-size: var(--fs-8);
   line-height: 1.5;
   font-weight: var(--fw-300);
@@ -571,7 +571,7 @@ main {
 }
 
 .about-text {
-  color: #5A1F28;
+  color: #1a3a6e;
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
   line-height: 1.6;
@@ -3388,6 +3388,7 @@ body::before {
 }
 
 .preview-fallback-link:hover { background: hsl(220, 55%, 28%); }
+
 
 
 
